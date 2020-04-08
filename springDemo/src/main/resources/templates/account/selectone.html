@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html::head"></head>
+<body class="bg-light">
+	<div th:replace="fragments.html::main-nav"></div>
+	<div class="py-3" style="width:30%;  margin: 0 auto;">
+		<div class="border border-dark">
+			<div class="px-3 py-3">
+			<b>회원 상세 정보</b>
+			<hr>
+			<form name="registerUser" th:object="${users}" th:method="POST">
+			<table class="table" >
+			  <tbody>
+			    <tr>
+			        <th scope="col" class="colored">아이디</th>
+			        <td><input type="text" class="form-control" maxlength="20" name="username" th:field="*{username}" required></td>
+			    </tr>
+			   <tr>
+			        <th scope="col" class="colored">이메일</th>
+			        <td><input type="email" class="form-control" placeholder="name@example.com" name="email" th:field="*{email}" required></td>
+			   </tr>			    
+			   <tr>
+			        <th scope="col" class="colored">비밀번호</th>
+			        <td><input type="password" class="form-control" maxlength="20" name="passwd" th:value="*{passwd}" readonly></td>
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">이름</th>
+			        <td><input type="text" class="form-control" maxlength="6" name="nameKor" th:field="*{nameKor}" required></td>
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">연락처</th>
+			        <td><input type="text" class="form-control" maxlength="13" name="tel" th:field="*{tel}" required></td>
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">생년월일</th>
+			        <td><input type="text" class="form-control" name="birthday" th:field="*{birthday}"required></td>
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">성별</th>
+			        <td style="text-align:left">
+				        <div class="custom-control custom-radio custom-control-inline">
+						  <input type="radio" id="male" name="sex" class="custom-control-input" th:checked="*{sex}?'checked'">
+						  <label class="custom-control-label" for="male">남</label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+						  <input type="radio" id="female" name="sex" class="custom-control-input" th:checked="*{!sex}?'checked'">
+						  <label class="custom-control-label" for="female">여</label>
+						</div>
+			        </td>
+			   </tr>			   			   			   			   			   
+			  </tbody>
+			</table>
+			<div class="row px-3 mb-3" style="display:block; text-align:center">
+				<span><button type="submit" class="btn btn-secondary"
+				 	style="margin-right:3px" formaction=""
+				 	onclick="return check()">수정</button></span>
+				<span><button type="submit" class="btn btn-secondary"
+				 	style="margin-right:3px" formaction=""
+				 	onclick="return check()">삭제</button></span>				 	
+				<span><button type="button" class="btn btn-secondary"
+					onclick="location.href = '/member/list'">목록</button></span>
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

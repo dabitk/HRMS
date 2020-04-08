@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments.html::head"></head>
+<body class="bg-light">
+	<div th:replace="fragments.html::main-nav"></div>
+	<div class="py-3" style="width:60%;  margin: 0 auto;">
+		<div class="border border-dark">
+			<div class="px-3 py-3">
+			<b>인사기본 상세보기</b>
+			<hr>
+			<form name="registerUser" method="POST">
+			<table class="table" >
+			  <tbody>
+			    <tr>
+			        <th scope="col" class="colored">사원번호</th>
+			        <td><input type="text" class="form-control" maxlength="20" name="username" required></td>
+			    	<th scope="col" class="colored">주민등록번호</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>
+			    </tr>
+			   <tr>
+			        <th scope="col" class="colored">성명</th>
+			        <td><input type="text" class="form-control" maxlength="20" name="passwd" required></td>
+			        <th scope="col" class="colored">영문성명</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">직위/직급</th>
+			        <td><input type="text" class="form-control" maxlength="20" name="passwd2" required></td>
+			    	<th scope="col" class="colored">직책</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>			        
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">부서</th>
+			        <td><input type="text" class="form-control" maxlength="6" name="name_kor" required></td>
+			    	<th scope="col" class="colored">모바일</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>			        
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">국적</th>
+			        <td></td>
+			    	<th scope="col" class="colored">근무 구분</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>			        
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">입사일</th>
+			        <td><input type="text" class="form-control" maxlength="13" name="tel" required></td>
+			    	<th scope="col" class="colored">입사 구분</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>			        
+			   </tr>
+			   <tr>
+			        <th scope="col" class="colored">퇴사일</th>
+			        <td><input type="email" class="form-control" placeholder="name@example.com" name="email" required></td>
+			    	<th scope="col" class="colored">퇴사사유</th>
+			    	<td><input type="text" class="form-control" maxlength="20" name="username" required></td>			        
+			   </tr>			   			   			   			   			   
+			  </tbody>
+			</table>
+			<div class="row px-3 mb-3" style="display:block; text-align:center">
+				<span style="float:left"><button type="submit" class="btn btn-secondary"
+				 	style="margin-right:3px" formaction=""
+				 	onclick="return check()">등록</button></span>
+				<span style="float:right"><button type="button" class="btn btn-secondary"
+					onclick="location.href = '/member/list'">목록</button></span>				 	
+				<span style="float:right;"><button type="button" class="btn btn-secondary"
+					style="margin-right:3px" onclick="location.href = '/member/list'">수정</button></span>
+			</div>
+			</form>
+			<div class="py-3" style="margin-top:3.5rem">
+				<ul class="nav nav-tabs">
+				  <li class="nav-item">
+				    <a class="nav-link active" data-toggle="tab" href="#qwe">개인정보</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#asd">학력사항</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#zxc">경력사항</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" data-toggle="tab" href="#zxc">자격/면허</a>
+				  </li>
+				</ul>
+			</div>			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments.html::head"></head>
+<body class="bg-light">
+	<div th:replace="fragments.html::main-nav"></div>
+	
+	<div class="container py-3">
+		<div class="border border-dark">
+			<div class="px-3 py-3">
+			<b>회원 관리</b>
+			<!--<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active"><b>회원 관리</b></li>
+			</ol>-->
+			<hr>
+			<table style="width:100%;">
+				<tbody>
+				<tr>
+				<td style="width: 12%;">회원조회</td>
+				<td style="width: 78%;">
+					<form name="queryUser" method="GET" action="/member/list">
+					  <div class="form-row">
+					    <div class="col  col-md-3">
+					      	<select name="selectCol" class="form-control">
+						    <option value="">조회 컬럼 선택</option>
+						    <option value="username">아이디</option>
+						    <option value="nameKor">성함</option>
+						    <option value="email">이메일</option>
+						</select>
+					    </div>
+					    <div class="col">
+					      	<input class="form-control" name="keyword" type="search" placeholder="조회 할 정보를 입력하세요.">
+					    </div>
+					    <div class="col col-md-1">
+					    	<input class="form-control btn btn-secondary" type="submit" value="조회">
+					    </div>
+					  </div>
+					</form>
+				</td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="row" style="display:block">
+			<span class="px-3">회원정보 리스트</span>
+			</div>
+			<form name="editUser" method="POST">
+			<table class="table">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col"></th>
+			      <th scope="col">사번</th>
+			      <th scope="col">아이디</th>
+			      <th scope="col">이름</th>
+			      <th scope="col">이메일</th>
+			      <th scope="col">연락처</th>
+			      <th scope="col">생년월일</th>
+			      <th scope="col">성별</th>
+			      <th scope="col">가입일자</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="user : ${users}">
+			    	<td style="text-align:right;" class="colored"><input class="form-check-input" type="checkbox" name="deleteUserId" th:value="${user.empno}"></td>
+			        <td class="colored" th:text="${user.empno}"/>
+			        <td><a th:href="@{/member/view(empno=${user.empno})}" th:text="${user.username}"></a></td>
+					<td th:text="${user.nameKor}"/>
+					<td th:text="${user.email}"/>
+					<td th:text="${user.tel}"/>
+					<td th:text="${user.birthday}"/>
+					<td th:text="${user.sex}"/>
+					<td th:text="${user.createDate}"/>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="row px-3 mb-3" style="display:block">
+				
+				<span><button type="submit" class="btn btn-secondary"
+				 	style="margin-right:3px" formaction="/member/delete"
+				 	onclick="return check()">선택 삭제</button></span>
+				<span><button type="button" class="btn btn-secondary"
+					onclick="location.href = '/member/register'">회원 추가</button></span>
+
+				<nav aria-label="Page navigation example" style="float:right">
+				  <ul class="pagination" th:with="start=${T(Math).floor(users.number/10)*10+1},last=(${start+9<users.totalPages ?start+9:users.totalPages})">
+				    <li class="page-item">
+				      <a class="page-link" th:href="@{/member/list(page=0)}" aria-label="First">
+				        <span aria-hidden="true">&laquo;</span>
+				        <span class="sr-only">First</span>
+				      </a>
+				    </li>
+				    <li class="page-item" th:classappend="${users.first}?'disabled'">
+				    	<a class="page-link" th:href="${users.first}?'#':@{/member/list(page=${users.number-1})}" aria-label="Previous">&lt;</a>
+				        <span aria-hidden="true"></span>
+				    </li>
+				    <li class="page-item" th:each="page:${#numbers.sequence(start,last)}" th:classappend="${page==users.number+1}?'active'">
+				    	<a class="page-link" th:text="${page}" th:href="@{/member/list(page=${page-1})}"></a>
+				    </li>
+				    <li class="page-item" th:classappend="${users.last}?'disabled'">
+				    	<a class="page-link" th:href="${users.last}?'#':@{/member/list(page=${users.number+1})}" aria-label="Previous">&gt;</a>
+				        <span aria-hidden="true"></span>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link" th:href="@{/member/list(page=${users.totalPages-1})}" aria-label="Last">
+				        <span aria-hidden="true">&raquo;</span>
+				        <span class="sr-only">Last</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
+	
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+	function check(){
+		//체크 항목이 존재하는지 검증
+		if (!$("input:checked[name='deleteUserId']").is(":checked")) {
+			alert("삭제하고자 하는 회원정보를 체크해주세요.");
+			return false;
+		}else{
+			//체크된 항목이 존재하면 그대로 submit
+			var delConfirm = confirm('선택한 회원정보를 삭제 하시겠습니까?');
+	   		if (delConfirm) {
+	      		alert('삭제되었습니다.');
+	      		return true;
+	   		}else {
+	      		alert('삭제가 취소되었습니다.');
+	      		return false;
+	   		}
+			
+		}
+	}
+</script>
+
+</body>
+</html>
