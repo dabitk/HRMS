@@ -10,5 +10,7 @@ Human Resource Management System developed using Spring Data JPA
 회원추가 페이지:
 ![alt text](https://github.com/dabitk/HRMS/blob/master/register.JPG "Registration Page")
 
+
 ERD 설계:
+
 ![alt text](https://github.com/dabitk/HRMS/blob/master/ERD.JPG "Erd Page")
